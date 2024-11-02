@@ -4,8 +4,7 @@ namespace Alexey\Files;
 
 class FileManager
 {
-
-    function readFile($filename): void
+    function readFile(string $filename): void
     {
         $fd = fopen($filename, 'r') or die("Не удалось открыть файл");
         while (!feof($fd)) {
@@ -15,14 +14,14 @@ class FileManager
         fclose($fd);
     }
 
-    function writeFile($filename, $data): void
+    function writeFile(string $filename, string $data): void
     {
         $fd = fopen($filename, 'w') or die("Не удалось создать файл");
         fwrite($fd, $data);
         fclose($fd);
     }
 
-    function deleteFile($filename): void
+    function deleteFile(string $filename): void
     {
         if (unlink($filename)) {
             echo "Файл был успешно удален";
@@ -31,7 +30,7 @@ class FileManager
         }
     }
 
-    function filesList($catalog): void
+    function filesList(string $catalog): void
     {
         if (is_dir($catalog)) {
             if ($dh = opendir($catalog)) {
